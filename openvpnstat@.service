@@ -1,0 +1,10 @@
+[Unit]
+Description=OpenVPN History Log service for %I
+
+[Service]
+Type=simple
+Restart=on-failure
+ExecStart=/etc/openvpn/server/openvpnstat.sh %I
+
+[Install]
+WantedBy=multi-user.target
