@@ -11,8 +11,8 @@ ifaces=($(nmcli -t -f device d | grep -v lo))
 internal_iface=${ifaces[0]}
 tun_iface="tun+"
 
-service_network_net=$(ipcalc -n $(/sbin/ip addr show dev "${ifaces[0]}" | grep "inet " | awk '{print $2}') | awk -F= '{print $2}')
-service_network_prefix=$(ipcalc -p $(/sbin/ip addr show dev "${ifaces[0]}" | grep "inet " | awk '{print $2}') | awk -F= '{print $2}')
+service_network_net=$(ipcalc -n $(/sbin/ip addr show dev eth0 | grep "inet " | awk '{print $2}') | awk -F= '{print $2}')
+service_network_prefix=$(ipcalc -p $(/sbin/ip addr show dev eth0 | grep "inet " | awk '{print $2}') | awk -F= '{print $2}')
 service_network="${service_network_net}/${service_network_prefix}"
 
 vpn_dhcp_network_net=$(grep "server [0-2][0-9][0-9]" "${script_home}/vpn.conf" | awk '{print $2}')
